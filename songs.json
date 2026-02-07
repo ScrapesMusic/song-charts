@@ -1,0 +1,479 @@
+[
+  {
+    "title": "Racetrack",
+    "key": "G",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "sections": [
+      {
+        "id": 1769887326986.4749,
+        "type": "verse",
+        "label": "",
+        "bars": 14,
+        "repeats": 1,
+        "content": "[G] Oh the raging [Em] Water\r\n[G] Carries me up [Em]stream\r\n[G] And if I get much [Em]further I may [D]scream\r\n[G] And if I keep on [Em] sleeping\r\n[G] I may have that [Em] dream\r\n[G] I can't remember [Em]faces or any[D]thing",
+        "notes": ""
+      },
+      {
+        "id": 1769887326986.3372,
+        "type": "prechorus",
+        "label": "",
+        "bars": 7,
+        "repeats": 1,
+        "content": "Oh I [C]can't quite remember which is worse\r\n[Em]Feeling this disease or this curse\r\n[C]Can't quite remember how it ought to [D]feel",
+        "notes": ""
+      },
+      {
+        "id": 1769887326986.6538,
+        "type": "chorus",
+        "label": "",
+        "bars": 10,
+        "repeats": 1,
+        "content": "But [G]When I hit the [Em]racetrack\r\nI [G]lay my [C]pedal [Em]down\r\n[G]Oh it [Dsus4]won't take [C]long now\r\n[G]No it [Dsus4]won't take [Em]long\r\n[G]No it [Bm]won't take [C]long now",
+        "notes": ""
+      },
+      {
+        "id": 1769887326986.7876,
+        "type": "rest",
+        "label": "",
+        "bars": 1,
+        "repeats": 1,
+        "content": "",
+        "notes": ""
+      },
+      {
+        "id": 1769887388233,
+        "type": "instrumental",
+        "label": "",
+        "bars": 4,
+        "repeats": 1,
+        "content": "",
+        "notes": "G C"
+      },
+      {
+        "id": 1769887416426,
+        "type": "verse",
+        "label": "",
+        "bars": 14,
+        "repeats": 1,
+        "content": "[G] Oh the year I'm [Em]having\n[G] Catches up with [Em]me\n[G] And if I get can't get [Em]further I may [D]freeze\n[G] And if I keep on [Em] dreaming\n[G] I may fall a [Em]sleep\n[G] I can't remember [Em]bracing or any[D]thing",
+        "notes": ""
+      },
+      {
+        "id": 1769887473506,
+        "type": "prechorus",
+        "label": "",
+        "bars": 7,
+        "repeats": 1,
+        "content": "Oh I [C]can't quite remember which is worse\r\n[Em]Feeling this disease or this curse\r\n[C]Can't quite remember how it ought to [D]feel",
+        "notes": ""
+      },
+      {
+        "id": 1769887520774,
+        "type": "chorus",
+        "label": "",
+        "bars": 9,
+        "repeats": 1,
+        "content": "But [G]When I hit the [Em]racetrack\nI [G]lay my [C]pedal [Em]down\n[G]Oh it [Dsus4]won't take [C]long now\n[G]No it [Dsus4]won't take [Em]long\n[A]",
+        "notes": ""
+      },
+      {
+        "id": 1769887685569,
+        "type": "solo",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "",
+        "notes": "G C Em"
+      },
+      {
+        "id": 1769887718031,
+        "type": "chorus",
+        "label": "",
+        "bars": 10,
+        "repeats": 1,
+        "content": "I [G]lay my [C]pedal [Em]down\n[G]Oh it [Dsus4]won't take [C]long now\n[G]No it [Dsus4]won't take [Em]long\n[G]No it [Bm]won't take [C]long now",
+        "notes": ""
+      },
+      {
+        "id": 1769887740464,
+        "type": "rest",
+        "label": "",
+        "bars": 1,
+        "repeats": 1,
+        "content": "",
+        "notes": ""
+      },
+      {
+        "id": 1769887754293,
+        "type": "instrumental",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "",
+        "notes": "G C"
+      }
+    ],
+    "savedAt": "2026-02-01T16:39:20.484Z"
+  },
+  {
+    "title": "Alone on the Weekend",
+    "key": "F",
+    "tempo": 110,
+    "timeSignature": "6/8",
+    "sections": [
+      {
+        "id": 1769957428647,
+        "type": "intro",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[Bb]   [F]  [C] \n[Bb]   [F]  [C] \n[Bb/D]     [F/C]    [A7/C#]      [Dm] \n[Bb]   [Bb/C]     [F]",
+        "notes": ""
+      },
+      {
+        "id": 1769957651055,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "And as I [C]disap[A7]pear into [F]nowhere\nI [C]hardly [A7]feel any[F]thing\nAlone on new [C]year's and a[A7]gain on the [F]weekend\nI [C]found a new [A7]note I can [F]play",
+        "notes": ""
+      },
+      {
+        "id": 1769957762864,
+        "type": "prechorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[Dm/F]I sit back and [F]I [A]shut [C]my \n[Dm/F]eyes when [F]I [A]don't [C]feel\n[Dm/F]right.  ",
+        "notes": ""
+      },
+      {
+        "id": 1769958019060,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nI'm left with this [Bb]feeling[F]  [A7]      [Dm] \nAlone on the [Bb]week[Bb/C]end  [F]again",
+        "notes": ""
+      },
+      {
+        "id": 1769963061253,
+        "type": "bridge",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G][C]I'm[Bb] on my [F]way\n[G][C][Bb]Wheeling [F]again\n[G][C]But[Bb]I can't es[F]cape\n[F/E]",
+        "notes": ""
+      },
+      {
+        "id": 1769963243344,
+        "type": "prechorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[Dm/F]I sit back and [F]I [A]shut [C]my \n[Dm/F]eyes when [F]I [A]don't [C]feel\n[Dm/F]right.  ",
+        "notes": ""
+      },
+      {
+        "id": 1769963268654,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nYou made it [Bb]easy[F]  [A7]      [Dm] \nTo be left with this [Bb]feel[Bbm]ing  [F]again",
+        "notes": ""
+      },
+      {
+        "id": 1769964175751,
+        "type": "instrumental",
+        "label": "",
+        "bars": 3,
+        "repeats": 1,
+        "content": "[Edim]     [Dm]   [C]  [Bb]   [Bb/C]     [F]",
+        "notes": ""
+      },
+      {
+        "id": 1769963315884,
+        "type": "bridge",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G][C]I'm[Bb] on my [F]way\n[G][C]  [Bb]Wheeling [F]again\n[G][C]But[Bb]I can't es[F]cape\n[F/E]",
+        "notes": "Building  - 1/8th note triplets"
+      },
+      {
+        "id": 1769963362414,
+        "type": "solo",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G]  [C]  [Bb]   [F]\n[G]  [C]  [Bb]   [F]\n[G]  [C]  [Bb]   [F]",
+        "notes": "Building  - 1/8th note triplets"
+      },
+      {
+        "id": 1769963407734,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nYou made it [Bb]easy[F] for[A7] me      [Dm] \nTo be left with this [Eb]fee[Bb]ling [F]again",
+        "notes": ""
+      },
+      {
+        "id": 1769963502853,
+        "type": "outro",
+        "label": "",
+        "bars": 6,
+        "repeats": 1,
+        "content": "[Eb]Feeling[Bb] [F]\n[Eb]Feeling[Bb]   [D7]   [Gm]\n[Ab]   [Eb]   [Bb]",
+        "notes": ""
+      }
+    ],
+    "savedAt": "2026-02-05T21:20:09.780Z"
+  },
+  {
+    "title": "Welded Art",
+    "key": "E",
+    "tempo": 100,
+    "timeSignature": "4/4",
+    "sections": [
+      {
+        "id": 1770326443340,
+        "type": "intro",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[E]  [F#m]",
+        "notes": ""
+      },
+      {
+        "id": 1770326480446,
+        "type": "verse",
+        "label": "",
+        "bars": 12,
+        "repeats": 1,
+        "content": "Well she [E]grew up in all the wrong places\nand [F#m]turned up in other peoples faces\n[E]how long will she remain nameless\n[F#m]how long will you be out on your [E]own for\nOn your [F#m]own for\nOut in the [E]outdoors\nOut on [F#m]all fours",
+        "notes": ""
+      },
+      {
+        "id": 1770327266732,
+        "type": "chorus",
+        "label": "",
+        "bars": 12,
+        "repeats": 1,
+        "content": "And there's a [A]man in the desert making welded art\n[E]Trying to make a living without losing his spark\nThere's a [A]girl in the city in a country band\nSinging the [E]left hands what you know\nBut who you are is the right man\nAnd [F#m]I can't make much sense[A] out of anything[E]\nSo [F#m]I stopped trying to make [A]sense out of every [E]thing",
+        "notes": ""
+      },
+      {
+        "id": 1770327418064,
+        "type": "verse",
+        "label": "",
+        "bars": 12,
+        "repeats": 1,
+        "content": "[E]How'd you get down from the heights you had found\nAnd [F#m]how'd get up without making a sound\nAnd [E]how'd you always make it look so [F#m7]easy\n[E]How'd to get back from the from the party again\n[F#m]How'd get up without making a sound\nAnd [E]how'd you always make it look so [F#m7]easy",
+        "notes": ""
+      },
+      {
+        "id": 1770327408631,
+        "type": "chorus",
+        "label": "",
+        "bars": 12,
+        "repeats": 1,
+        "content": "And there's a [A]man in the desert making welded art\n[E]Trying to make a living without losing his spark\nThere's a [A]girl in the city in a country band\nSinging the [E]left hands what you know\nBut who you are is the right man\nAnd [F#m]I can't make much sense[A] out of anything[E]\nSo [F#m]I stopped trying to make [A]sense out of every [E]thing",
+        "notes": ""
+      },
+      {
+        "id": 1770327536827,
+        "type": "solo",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[E]  [F#m]",
+        "notes": ""
+      },
+      {
+        "id": 1770327408015,
+        "type": "chorus",
+        "label": "",
+        "bars": 12,
+        "repeats": 1,
+        "content": "And there's a [A]man in the desert making welded art\n[E]Trying to make a living without losing his spark\nThere's a [A]girl in the city in a country band\nSinging the [E]left hands what you know\nBut who you are is the right man\nAnd [F#m]I can't make much sense[A] out of anything[E]\nSo [F#m]I stopped trying to make [A]sense out of every [E]thing",
+        "notes": ""
+      }
+    ],
+    "savedAt": "2026-02-05T21:41:28.562Z"
+  },
+  {
+    "title": "Temptation",
+    "key": "C",
+    "tempo": 110,
+    "timeSignature": "4/4",
+    "sections": [
+      {
+        "id": 1770327720932,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]How could someone need so little make up\n[F]How could I compete with every mistake and\n[G]How can I resist every little [C]temptation",
+        "notes": ""
+      },
+      {
+        "id": 1770327769816,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]How's it supposed to feel when the world's a reaction\n[F]There's cities and there's drinking and I'm missing the action\n[G]Just trying to escape out of every little [C]temptation",
+        "notes": ""
+      },
+      {
+        "id": 1770327828302,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]How can I become the king of the absent\n[F]How can I be one of the loud lonesome faction\n[G]How can I be coy when I'm dripping with this [C]temptation",
+        "notes": ""
+      },
+      {
+        "id": 1770327860648,
+        "type": "chorus",
+        "label": "",
+        "bars": 6,
+        "repeats": 1,
+        "content": "They've got [F]every little [C]temptation\nThey know [F]how you take your [C]temptation\nAnd they'll be [F]right out with your [C]temptation",
+        "notes": ""
+      },
+      {
+        "id": 1770327900578,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]How is it a choice if it's up on a billboard\n[F]Your taking in the noise from the lottery smoke store\n[G]How can I resist oh the surgeon general's [C]temptation",
+        "notes": ""
+      },
+      {
+        "id": 1770327941424,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]How can I be calm to geriatrics on F-word\nI'd [F]shut it off again but I'd miss all the good jokes\nI [G]know that I know better but I'm falling for it [C]temptation",
+        "notes": ""
+      },
+      {
+        "id": 1770327992896,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]So I'm wasted on my phone playing poker with Bitcoin\n[F]Cruising on my drone watching ultimate roadshow\n[G]I'm drinking all alone and I'm listening to [C]temptation",
+        "notes": ""
+      },
+      {
+        "id": 1770328052166,
+        "type": "chorus",
+        "label": "",
+        "bars": 14,
+        "repeats": 1,
+        "content": "They've got [F]every little [C]temptation\nThey know [F]how you take your [C]temptation\nAnd they'll be [F]right out with your [C]temptation\nThey know [Dm]how you take your\n[Dm](how you take your)\n[Dm]how you take your\n[Dm](how you take your)",
+        "notes": ""
+      },
+      {
+        "id": 1770328270706,
+        "type": "outro",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[F]  [C]\n[F]  [C]\n[F]  [C]\n[F]  [C]",
+        "notes": ""
+      }
+    ],
+    "savedAt": "2026-02-05T21:52:09.089Z"
+  },
+  {
+    "title": "Immediately After",
+    "key": "B",
+    "tempo": 85,
+    "timeSignature": "4/4",
+    "sections": [
+      {
+        "id": 1770423353238,
+        "type": "intro",
+        "label": "",
+        "bars": 4,
+        "repeats": 1,
+        "content": "[B]   [E]   [F#] \n[B]   [E]   [F#] ",
+        "notes": ""
+      },
+      {
+        "id": 1770423385722,
+        "type": "verse",
+        "label": "",
+        "bars": 12,
+        "repeats": 1,
+        "content": "[B]I was your plus one [E] that [F#]afternoon\n[B]You said I could come [E]but just not too [F#]soon\n[E] And if I could still [F#]dream like I used to\n[B] I would [A]close my [E]eyes just to  [F#]picture you\n[B] I would [A]think back [E]to all the [F#]things we'd do\n[E]",
+        "notes": ""
+      },
+      {
+        "id": 1770423563836,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "How we'd [C#m]slip into a [D#m]fit of open [E]laughter [F#]Immediately \n[B]After [E]   [F#]\n[B]  [E]  [F#]\nAnd [C#m] I would lay and [D#m]stare up at the [E]rafters [F#]",
+        "notes": ""
+      },
+      {
+        "id": 1770423717867,
+        "type": "verse",
+        "label": "",
+        "bars": 12,
+        "repeats": 1,
+        "content": "[B]I would take you up [E] on that [F#]offer now\n[B]A wedding ring [E]a borrowed [F#]gown\n[E] Ah but we were too young to [F#]settle down\n[B] Head [A]over heels[E] but [F#]out of  time\n[B] I [A]walked [E]away [F#]big surprise \n[E]",
+        "notes": ""
+      },
+      {
+        "id": 1770423878227,
+        "type": "chorus",
+        "label": "",
+        "bars": 6,
+        "repeats": 1,
+        "content": "You said I [C#m]hope that you will [D#m]find what you are [E]after [F#]Immediately \n[B]After [E]   [F#]\n[B]  [E]  [F#]\n",
+        "notes": ""
+      },
+      {
+        "id": 1770423946473,
+        "type": "bridge",
+        "label": "",
+        "bars": 9,
+        "repeats": 1,
+        "content": "And [C#m] I would move [D#m]and keep on moving [E]faster [D#m]\n[C#m] Running on through [D#m]triumph or [E]disaster [D#m]\nBut [C#m] never finding [D#m]happy ever [E]after [F#]Immediately \n[B]After [E]  [F#]\n[B]  [E]  [F#]",
+        "notes": ""
+      },
+      {
+        "id": 1770424114398,
+        "type": "verse",
+        "label": "",
+        "bars": 6,
+        "repeats": 1,
+        "content": "[E] But that was so [F#]long where does it go?\n[B] I was [A]up all [E]night til the [F#]break of dawn\n[B]Found my [A]darkest [E]suit and [F#]put it on ",
+        "notes": ""
+      },
+      {
+        "id": 1770424217590,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "And as I [C#m]stood above your [D#m]bed of rose and [E]aster [F#]Immediately \n[B]After [E]   [F#]\n[B]  [E]  [F#]\n[C#m]Wishin' there were [D#m]some way to get [E]back there [F#]Immediately\n[B]After ",
+        "notes": ""
+      }
+    ],
+    "savedAt": "2026-02-07T00:38:13.905Z"
+  }
+]
