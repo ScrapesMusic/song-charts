@@ -143,18 +143,67 @@
       const [showExport, setShowExport] = useState(null);
       const [showImport, setShowImport] = useState(false);
       const [importText, setImportText] = useState('');
-      const [savedSongs, setSavedSongs] = useState([]);
-      const [showSaved, setShowSaved] = useState(false);
+      const [localSongs, setLocalSongs] = useState([]);
+      const [sharedLibrary, setSharedLibrary] = useState([]);
+      const [libraryLoading, setLibraryLoading] = useState(true);
       const [notification, setNotification] = useState(null);
+      const [sidebarTab, setSidebarTab] = useState('shared');
       const fileInputRef = useRef(null);
 
+      // Auto-save current song to localStorage
       useEffect(() => {
         try { localStorage.setItem('currentSong', JSON.stringify(song)); } catch (e) {}
       }, [song]);
 
+      // Load local songs from localStorage
+      useEffect(() => {
+        try {
+          const saved = JSON.parse(localStorage.getItem('songCharts') || '[]');
+          setLocalSongs(saved);
+        } catch (e) { setLocalSongs([]); }
+      }, []);
+
+      // Load shared library from songs.json
+      useEffect(() => {
+        setLibraryLoading(true);
+        fetch('./songs.json')
+          .then(res => {
+            if (!res.ok) throw new Error('No shared library found');
+            return res.json();
+          })
+          .then(data => {
+            setSharedLibrary(Array.isArray(data) ? data : []);
+            setLibraryLoading(false);
+          })
+          .catch(err => {
+            console.log('No shared library found (songs.json). This is normal for new setups.');
+            setSharedLibrary([]);
+            setLibraryLoading(false);
+          });
+      }, []);
+
+      // Check URL for shared song data on load
+      useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const sharedSong = params.get('song');
+        if (sharedSong) {
+          try {
+            const decoded = decodeURIComponent(escape(atob(sharedSong)));
+            const songData = JSON.parse(decoded);
+            if (songData.title && songData.sections) {
+              setSong(songData);
+              notify('Shared song loaded!');
+              window.history.replaceState({}, '', window.location.pathname);
+            }
+          } catch (e) {
+            console.error('Failed to load shared song:', e);
+          }
+        }
+      }, []);
+
       const notify = (message) => {
         setNotification(message);
-        setTimeout(() => setNotification(null), 2000);
+        setTimeout(() => setNotification(null), 2500);
       };
 
       const totalBars = song.sections.reduce((sum, s) => sum + (s.bars * (s.repeats || 1)), 0);
@@ -281,35 +330,50 @@
         reader.readAsText(file);
       };
 
-      const saveSong = () => {
+      // Save current song to local storage
+      const saveToLocal = () => {
         try {
           const existing = JSON.parse(localStorage.getItem('songCharts') || '[]');
-          const saved = [...existing.filter(s => s.title !== song.title), { ...song, savedAt: new Date().toISOString() }];
-          localStorage.setItem('songCharts', JSON.stringify(saved));
-          setSavedSongs(saved);
-          notify(`"${song.title}" saved`);
+          const updated = [...existing.filter(s => s.title !== song.title), { ...song, savedAt: new Date().toISOString() }];
+          localStorage.setItem('songCharts', JSON.stringify(updated));
+          setLocalSongs(updated);
+          notify(`"${song.title}" saved locally`);
         } catch (e) { notify('Error saving song'); }
       };
 
-      const loadSavedSongs = () => {
-        try { setSavedSongs(JSON.parse(localStorage.getItem('songCharts') || '[]')); } catch (e) { setSavedSongs([]); }
-        setShowSaved(true);
-      };
-
-      const loadSong = (savedSong) => {
-        setSong(savedSong);
-        setShowSaved(false);
+      // Load a song (from either library)
+      const loadSong = (songToLoad) => {
+        setSong(songToLoad);
         setEditingSection(null);
-        notify(`"${savedSong.title}" loaded`);
+        notify(`"${songToLoad.title}" loaded`);
       };
 
-      const deleteSavedSong = (title) => {
+      // Delete from local storage
+      const deleteLocalSong = (title, e) => {
+        e.stopPropagation();
         try {
-          const saved = savedSongs.filter(s => s.title !== title);
-          setSavedSongs(saved);
-          localStorage.setItem('songCharts', JSON.stringify(saved));
+          const updated = localSongs.filter(s => s.title !== title);
+          setLocalSongs(updated);
+          localStorage.setItem('songCharts', JSON.stringify(updated));
           notify('Song deleted');
         } catch (e) {}
+      };
+
+      // Export entire local library as songs.json
+      const exportLibrary = () => {
+        if (localSongs.length === 0) {
+          notify('No songs to export. Save some songs first!');
+          return;
+        }
+        const content = JSON.stringify(localSongs, null, 2);
+        const blob = new Blob([content], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'songs.json';
+        a.click();
+        URL.revokeObjectURL(url);
+        notify('Library exported as songs.json — upload this to your GitHub repo');
       };
 
       const downloadFile = (content, filename, type = 'text/plain') => {
@@ -322,7 +386,6 @@
         URL.revokeObjectURL(url);
       };
 
-      // Generate shareable URL with song data encoded
       const generateShareLink = () => {
         const songData = JSON.stringify(song);
         const encoded = btoa(unescape(encodeURIComponent(songData)));
@@ -331,11 +394,9 @@
         notify('Share link copied to clipboard!');
       };
 
-      // Open print-friendly view for PDF export
       const openPrintView = () => {
         const printWindow = window.open('', '_blank');
         
-        // Build section list HTML
         const sectionListHTML = song.sections.map((section, i) => {
           const config = getTypeConfig(section.type);
           const repeat = (section.repeats || 1) > 1 ? ' ×' + section.repeats : '';
@@ -347,7 +408,6 @@
           '</div>';
         }).join('');
 
-        // Build proportional bar HTML
         const barHTML = song.sections.map((section) => {
           const config = getTypeConfig(section.type);
           const effectiveBars = section.bars * (section.repeats || 1);
@@ -355,7 +415,6 @@
           return '<div style="width:' + widthPercent + '%;background:' + config.printColor + ';min-width:2px;"></div>';
         }).join('');
 
-        // Build sections content HTML
         const sectionsHTML = song.sections.map((section, i) => {
           const config = getTypeConfig(section.type);
           const repeat = (section.repeats || 1) > 1 ? ' (×' + section.repeats + ')' : '';
@@ -428,351 +487,366 @@
         setTimeout(() => printWindow.print(), 250);
       };
 
-      // Check URL for shared song data on load
-      useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const sharedSong = params.get('song');
-        if (sharedSong) {
-          try {
-            const decoded = decodeURIComponent(escape(atob(sharedSong)));
-            const songData = JSON.parse(decoded);
-            if (songData.title && songData.sections) {
-              setSong(songData);
-              notify('Shared song loaded!');
-              // Clean URL
-              window.history.replaceState({}, '', window.location.pathname);
-            }
-          } catch (e) {
-            console.error('Failed to load shared song:', e);
-          }
-        }
-      }, []);
-
       const newSong = () => {
         if (song.sections.length > 0 && !confirm('Start a new song? Unsaved changes will be lost.')) return;
         setSong({ ...defaultSong, title: 'Untitled Song' });
         setEditingSection(null);
       };
 
+      // Sidebar song list component
+      const SongListItem = ({ s, isShared }) => {
+        const isActive = s.title === song.title;
+        return (
+          <div
+            onClick={() => loadSong(s)}
+            className={`p-3 cursor-pointer border-b border-gray-100 hover:bg-gray-50 transition-colors ${isActive ? 'bg-blue-50 border-l-4 border-l-blue-500' : ''}`}
+          >
+            <div className="font-medium text-gray-800 truncate">{s.title}</div>
+            <div className="text-xs text-gray-500 mt-1">
+              {s.sections?.length || 0} sections • Key: {s.key || '?'} • {s.tempo || '?'} BPM
+            </div>
+            {!isShared && (
+              <button
+                onClick={(e) => deleteLocalSong(s.title, e)}
+                className="text-xs text-red-400 hover:text-red-600 mt-1"
+              >
+                Delete
+              </button>
+            )}
+          </div>
+        );
+      };
+
       return (
-        <div className="min-h-screen bg-gray-100">
-          {notification && (
-            <div className="fixed top-4 right-4 bg-gray-800 text-white px-4 py-2 rounded shadow-lg z-50">
-              {notification}
+        <div className="min-h-screen bg-gray-100 flex">
+          {/* Sidebar */}
+          <div className="w-72 bg-white border-r border-gray-200 flex flex-col flex-shrink-0 h-screen sticky top-0">
+            <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-600 to-purple-600">
+              <h1 className="text-lg font-bold text-white">Song Charts</h1>
             </div>
-          )}
-          
-          <div className="max-w-4xl mx-auto p-4 space-y-4">
-            {/* Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow p-4 text-white">
-              <h1 className="text-xl font-bold">Song Chart Builder</h1>
-              <p className="text-sm opacity-80">Build song structures with chord progressions and lyrics</p>
-            </div>
-
-            {/* Toolbar */}
-            <div className="bg-white rounded-lg shadow p-3 flex flex-wrap gap-2 items-center">
-              <button onClick={newSong} className="px-3 py-1.5 text-sm bg-gray-100 rounded hover:bg-gray-200">New</button>
-              <button onClick={saveSong} className="px-3 py-1.5 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200">Save</button>
-              <button onClick={loadSavedSongs} className="px-3 py-1.5 text-sm bg-gray-100 rounded hover:bg-gray-200">Open Saved</button>
-              <div className="w-px h-6 bg-gray-300 mx-1" />
-              <button onClick={() => setShowImport(true)} className="px-3 py-1.5 text-sm bg-gray-100 rounded hover:bg-gray-200">Import</button>
-              <button onClick={() => setShowExport(showExport ? null : 'text')} className="px-3 py-1.5 text-sm bg-gray-100 rounded hover:bg-gray-200">Export</button>
-              <div className="w-px h-6 bg-gray-300 mx-1" />
-              <button onClick={openPrintView} className="px-3 py-1.5 text-sm bg-green-100 text-green-700 rounded hover:bg-green-200">Save as PDF</button>
-              <button onClick={generateShareLink} className="px-3 py-1.5 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200">Copy Share Link</button>
+            
+            {/* Sidebar Tabs */}
+            <div className="flex border-b border-gray-200">
+              <button
+                onClick={() => setSidebarTab('shared')}
+                className={`flex-1 py-2 text-sm font-medium ${sidebarTab === 'shared' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
+              >
+                Shared ({sharedLibrary.length})
+              </button>
+              <button
+                onClick={() => setSidebarTab('local')}
+                className={`flex-1 py-2 text-sm font-medium ${sidebarTab === 'local' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
+              >
+                My Songs ({localSongs.length})
+              </button>
             </div>
 
-            {/* Song Info */}
-            <div className="bg-white rounded-lg shadow p-4">
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                <div className="col-span-2">
-                  <label className="block text-xs text-gray-500 mb-1">Song Title</label>
-                  <input type="text" value={song.title} onChange={(e) => setSong({ ...song, title: e.target.value })}
-                    className="w-full text-xl font-bold border-b-2 border-gray-200 focus:border-blue-500 focus:outline-none pb-1" />
-                </div>
-                <div>
-                  <label className="block text-xs text-gray-500 mb-1">Key</label>
-                  <input type="text" value={song.key} onChange={(e) => setSong({ ...song, key: e.target.value })}
-                    className="w-full border rounded px-2 py-1.5" />
-                </div>
-                <div>
-                  <label className="block text-xs text-gray-500 mb-1">Tempo</label>
-                  <input type="number" value={song.tempo} onChange={(e) => setSong({ ...song, tempo: parseInt(e.target.value) || 0 })}
-                    className="w-full border rounded px-2 py-1.5" />
-                </div>
-                <div>
-                  <label className="block text-xs text-gray-500 mb-1">Time Sig</label>
-                  <input type="text" value={song.timeSignature} onChange={(e) => setSong({ ...song, timeSignature: e.target.value })}
-                    className="w-full border rounded px-2 py-1.5" />
-                </div>
-              </div>
-            </div>
-
-            {/* Song Map */}
-            <div className="bg-white rounded-lg shadow p-4">
-              <div className="flex justify-between items-center mb-3">
-                <h2 className="font-semibold text-gray-700">Song Map</h2>
-                <span className="text-sm text-gray-500">{totalBars} bars total</span>
-              </div>
-              
-              {song.sections.length === 0 ? (
-                <div className="text-center py-6 text-gray-400">Add sections to build your song map</div>
+            {/* Song List */}
+            <div className="flex-1 overflow-y-auto">
+              {sidebarTab === 'shared' ? (
+                libraryLoading ? (
+                  <div className="p-4 text-gray-500 text-sm">Loading...</div>
+                ) : sharedLibrary.length === 0 ? (
+                  <div className="p-4 text-gray-500 text-sm">
+                    No shared library yet.
+                    <br /><br />
+                    <span className="text-xs">To create one: save songs locally, then click "Export Library" and upload the songs.json file to your GitHub repo.</span>
+                  </div>
+                ) : (
+                  sharedLibrary.map((s, i) => <SongListItem key={i} s={s} isShared={true} />)
+                )
               ) : (
-                <div className="space-y-3">
-                  {/* Proportional bar */}
-                  <div className="flex h-10 rounded-lg overflow-hidden shadow-inner border border-gray-200">
-                    {song.sections.map((section, i) => {
-                      const config = getTypeConfig(section.type);
-                      const effectiveBars = section.bars * (section.repeats || 1);
-                      const widthPercent = (effectiveBars / totalBars) * 100;
-                      const isSelected = editingSection === section.id;
-                      return (
-                        <div key={section.id}
-                          className={`cursor-pointer transition-all hover:brightness-110 ${isSelected ? 'brightness-125 ring-2 ring-inset ring-white/50' : ''}`}
-                          style={{ width: `${widthPercent}%`, backgroundColor: config.printColor, minWidth: '3px' }}
-                          onClick={() => setEditingSection(isSelected ? null : section.id)}
-                          title={`${getSectionDisplayName(section, i)} - ${effectiveBars} bars`}
-                        />
-                      );
-                    })}
-                  </div>
-                  
-                  {/* Vertical section list */}
-                  <div className="border rounded-lg divide-y">
-                    {song.sections.map((section, i) => {
-                      const config = getTypeConfig(section.type);
-                      const effectiveBars = section.bars * (section.repeats || 1);
-                      const widthPercent = ((effectiveBars / totalBars) * 100).toFixed(0);
-                      const repeat = (section.repeats || 1) > 1 ? ` ×${section.repeats}` : '';
-                      const isSelected = editingSection === section.id;
-                      return (
-                        <div key={section.id}
-                          className={`flex items-center gap-3 px-3 py-2 cursor-pointer transition-colors ${isSelected ? 'bg-blue-50' : 'hover:bg-gray-50'}`}
-                          onClick={() => setEditingSection(isSelected ? null : section.id)}>
-                          <span className="text-xs text-gray-400 w-5">{i + 1}.</span>
-                          <div className="w-4 h-4 rounded flex-shrink-0" style={{ backgroundColor: config.printColor }} />
-                          <span className="font-medium text-gray-800 flex-1">{getSectionDisplayName(section, i)}</span>
-                          <span className="text-sm text-gray-600">{section.bars} bars{repeat}</span>
-                          <span className="text-xs text-gray-400 w-10 text-right">{widthPercent}%</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                localSongs.length === 0 ? (
+                  <div className="p-4 text-gray-500 text-sm">No local songs saved yet.</div>
+                ) : (
+                  localSongs.map((s, i) => <SongListItem key={i} s={s} isShared={false} />)
+                )
               )}
             </div>
 
-            {/* Section List */}
-            <div className="bg-white rounded-lg shadow">
-              <div className="p-3 border-b flex flex-wrap gap-2 items-center justify-between">
-                <h2 className="font-semibold text-gray-700">Sections</h2>
-                <div className="flex flex-wrap gap-1">
-                  {SECTION_TYPES.slice(0, 6).map(type => (
-                    <button key={type.id} onClick={() => addSection(type.id)}
-                      className={`${type.color} text-white px-2 py-1 rounded text-xs hover:opacity-90`}>
-                      + {type.label}
-                    </button>
-                  ))}
-                  <select onChange={(e) => { if (e.target.value) addSection(e.target.value); e.target.value = ''; }}
-                    className="text-xs border rounded px-1 py-1 text-gray-600" defaultValue="">
-                    <option value="">+ More...</option>
-                    {SECTION_TYPES.slice(6).map(type => (
-                      <option key={type.id} value={type.id}>{type.label}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {song.sections.length === 0 ? (
-                <div className="p-8 text-center text-gray-400">Click a section type above to start building your song.</div>
-              ) : (
-                <div className="divide-y">
-                  {song.sections.map((section, i) => {
-                    const config = getTypeConfig(section.type);
-                    const isEditing = editingSection === section.id;
-                    const repeat = (section.repeats || 1) > 1 ? ` ×${section.repeats}` : '';
-                    
-                    return (
-                      <div key={section.id} className={`p-3 ${isEditing ? 'bg-blue-50' : ''}`}>
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className={`w-3 h-3 rounded-full ${config.color}`} />
-                          <span className="font-medium">{getSectionDisplayName(section, i)}</span>
-                          <span className="text-sm text-gray-500">({section.bars} bars{repeat})</span>
-                          {section.notes && <span className="text-sm text-gray-400 italic">— {section.notes}</span>}
-                          <div className="flex-1" />
-                          <button onClick={() => moveSection(section.id, -1)} className="text-gray-400 hover:text-gray-600 p-1">↑</button>
-                          <button onClick={() => moveSection(section.id, 1)} className="text-gray-400 hover:text-gray-600 p-1">↓</button>
-                          <button onClick={() => duplicateSection(section.id)} className="text-gray-400 hover:text-gray-600 p-1">⧉</button>
-                          <button onClick={() => setEditingSection(isEditing ? null : section.id)} className="text-blue-500 hover:text-blue-700 text-sm px-2">
-                            {isEditing ? 'Done' : 'Edit'}
-                          </button>
-                          <button onClick={() => deleteSection(section.id)} className="text-red-400 hover:text-red-600 p-1">×</button>
-                        </div>
-
-                        {!isEditing && section.content && (
-                          <div className="pl-5"><ChordLyricDisplay content={section.content} /></div>
-                        )}
-
-                        {isEditing && (
-                          <div className="pl-5 space-y-3 mt-3">
-                            <div className="grid grid-cols-4 gap-3">
-                              <div>
-                                <label className="block text-xs text-gray-500 mb-1">Type</label>
-                                <select value={section.type} onChange={(e) => updateSection(section.id, { type: e.target.value })}
-                                  className="w-full border rounded px-2 py-1.5 text-sm">
-                                  {SECTION_TYPES.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
-                                </select>
-                              </div>
-                              <div>
-                                <label className="block text-xs text-gray-500 mb-1">Custom Label</label>
-                                <input type="text" value={section.label} onChange={(e) => updateSection(section.id, { label: e.target.value })}
-                                  placeholder="Optional" className="w-full border rounded px-2 py-1.5 text-sm" />
-                              </div>
-                              <div>
-                                <label className="block text-xs text-gray-500 mb-1">Bars</label>
-                                <input type="number" value={section.bars} onChange={(e) => updateSection(section.id, { bars: parseInt(e.target.value) || 1 })}
-                                  min="1" className="w-full border rounded px-2 py-1.5 text-sm" />
-                              </div>
-                              <div>
-                                <label className="block text-xs text-gray-500 mb-1">Repeats</label>
-                                <input type="number" value={section.repeats || 1} onChange={(e) => updateSection(section.id, { repeats: parseInt(e.target.value) || 1 })}
-                                  min="1" className="w-full border rounded px-2 py-1.5 text-sm" />
-                              </div>
-                            </div>
-                            
-                            <div>
-                              <label className="block text-xs text-gray-500 mb-1">Notes (feel, dynamics)</label>
-                              <input type="text" value={section.notes} onChange={(e) => updateSection(section.id, { notes: e.target.value })}
-                                placeholder="e.g., soft, half-time, building" className="w-full border rounded px-2 py-1.5 text-sm" />
-                            </div>
-                            
-                            <div>
-                              <label className="block text-xs text-gray-500 mb-1">
-                                Chords & Lyrics <span className="text-gray-400">— use [G]word [Am]format</span>
-                              </label>
-                              <textarea value={section.content} onChange={(e) => updateSection(section.id, { content: e.target.value })}
-                                placeholder="[G]Amazing [D]grace, how [Em]sweet the [C]sound" rows={4}
-                                className="w-full border rounded px-2 py-1.5 font-mono text-sm" />
-                            </div>
-
-                            {section.content && (
-                              <div>
-                                <label className="block text-xs text-gray-500 mb-1">Preview</label>
-                                <div className="bg-white rounded p-3 border"><ChordLyricDisplay content={section.content} /></div>
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
+            {/* Sidebar Footer */}
+            <div className="p-3 border-t border-gray-200 space-y-2">
+              <button
+                onClick={exportLibrary}
+                className="w-full py-2 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200"
+              >
+                Export Library (songs.json)
+              </button>
             </div>
+          </div>
 
-            {/* Export Panel */}
-            {showExport && (
-              <div className="bg-white rounded-lg shadow p-4">
-                <div className="flex flex-wrap gap-2 mb-3 border-b pb-3">
-                  <button onClick={() => setShowExport('text')} className={`px-3 py-1 rounded text-sm ${showExport === 'text' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'}`}>Text</button>
-                  <button onClick={() => setShowExport('chordpro')} className={`px-3 py-1 rounded text-sm ${showExport === 'chordpro' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'}`}>ChordPro</button>
-                  <button onClick={() => setShowExport('json')} className={`px-3 py-1 rounded text-sm ${showExport === 'json' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'}`}>JSON</button>
-                  <div className="flex-1" />
-                  <button onClick={() => {
-                    const content = showExport === 'json' ? exportToJSON() : showExport === 'chordpro' ? exportToChordPro() : exportToText();
-                    navigator.clipboard.writeText(content);
-                    notify('Copied to clipboard');
-                  }} className="px-3 py-1 bg-gray-100 rounded text-sm hover:bg-gray-200">Copy</button>
-                  <button onClick={() => {
-                    const content = showExport === 'json' ? exportToJSON() : showExport === 'chordpro' ? exportToChordPro() : exportToText();
-                    const ext = showExport === 'json' ? 'json' : showExport === 'chordpro' ? 'cho' : 'txt';
-                    downloadFile(content, `${song.title.replace(/[^a-z0-9]/gi, '_')}.${ext}`);
-                    notify('Downloaded');
-                  }} className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600">Download</button>
-                  <button onClick={() => setShowExport(null)} className="px-3 py-1 bg-gray-100 rounded text-sm hover:bg-gray-200">Close</button>
-                </div>
-                <pre className="bg-gray-50 p-3 rounded text-xs overflow-auto max-h-64 font-mono whitespace-pre-wrap">
-                  {showExport === 'json' ? exportToJSON() : showExport === 'chordpro' ? exportToChordPro() : exportToText()}
-                </pre>
+          {/* Main Content */}
+          <div className="flex-1 overflow-y-auto">
+            {notification && (
+              <div className="fixed top-4 right-4 bg-gray-800 text-white px-4 py-2 rounded shadow-lg z-50">
+                {notification}
               </div>
             )}
+            
+            <div className="max-w-4xl mx-auto p-4 space-y-4">
+              {/* Toolbar */}
+              <div className="bg-white rounded-lg shadow p-3 flex flex-wrap gap-2 items-center">
+                <button onClick={newSong} className="px-3 py-1.5 text-sm bg-gray-100 rounded hover:bg-gray-200">New</button>
+                <button onClick={saveToLocal} className="px-3 py-1.5 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200">Save</button>
+                <div className="w-px h-6 bg-gray-300 mx-1" />
+                <button onClick={() => setShowImport(true)} className="px-3 py-1.5 text-sm bg-gray-100 rounded hover:bg-gray-200">Import</button>
+                <button onClick={() => setShowExport(showExport ? null : 'text')} className="px-3 py-1.5 text-sm bg-gray-100 rounded hover:bg-gray-200">Export</button>
+                <div className="w-px h-6 bg-gray-300 mx-1" />
+                <button onClick={openPrintView} className="px-3 py-1.5 text-sm bg-green-100 text-green-700 rounded hover:bg-green-200">Save as PDF</button>
+                <button onClick={generateShareLink} className="px-3 py-1.5 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200">Copy Share Link</button>
+              </div>
 
-            {/* Import Modal */}
-            {showImport && (
-              <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-                <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-auto">
-                  <div className="p-4 border-b flex justify-between items-center">
-                    <h3 className="font-semibold">Import Song</h3>
-                    <button onClick={() => { setShowImport(false); setImportText(''); }} className="text-gray-500 hover:text-gray-700 text-xl">×</button>
+              {/* Song Info */}
+              <div className="bg-white rounded-lg shadow p-4">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                  <div className="col-span-2">
+                    <label className="block text-xs text-gray-500 mb-1">Song Title</label>
+                    <input type="text" value={song.title} onChange={(e) => setSong({ ...song, title: e.target.value })}
+                      className="w-full text-xl font-bold border-b-2 border-gray-200 focus:border-blue-500 focus:outline-none pb-1" />
                   </div>
-                  <div className="p-4 space-y-4">
-                    <input ref={fileInputRef} type="file" accept=".txt,.cho,.chordpro,.json" onChange={handleFileUpload}
-                      className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
-                    <div className="text-center text-gray-400 text-sm">— or paste content —</div>
-                    <textarea value={importText} onChange={(e) => setImportText(e.target.value)}
-                      placeholder="Paste ChordPro or JSON content here..." rows={12}
-                      className="w-full border rounded p-3 font-mono text-sm" />
-                    <div className="flex justify-end gap-2">
-                      <button onClick={() => { setShowImport(false); setImportText(''); }} className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200">Cancel</button>
-                      <button onClick={handleImport} disabled={!importText.trim()} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50">Import</button>
+                  <div>
+                    <label className="block text-xs text-gray-500 mb-1">Key</label>
+                    <input type="text" value={song.key} onChange={(e) => setSong({ ...song, key: e.target.value })}
+                      className="w-full border rounded px-2 py-1.5" />
+                  </div>
+                  <div>
+                    <label className="block text-xs text-gray-500 mb-1">Tempo</label>
+                    <input type="number" value={song.tempo} onChange={(e) => setSong({ ...song, tempo: parseInt(e.target.value) || 0 })}
+                      className="w-full border rounded px-2 py-1.5" />
+                  </div>
+                  <div>
+                    <label className="block text-xs text-gray-500 mb-1">Time Sig</label>
+                    <input type="text" value={song.timeSignature} onChange={(e) => setSong({ ...song, timeSignature: e.target.value })}
+                      className="w-full border rounded px-2 py-1.5" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Song Map */}
+              <div className="bg-white rounded-lg shadow p-4">
+                <div className="flex justify-between items-center mb-3">
+                  <h2 className="font-semibold text-gray-700">Song Map</h2>
+                  <span className="text-sm text-gray-500">{totalBars} bars total</span>
+                </div>
+                
+                {song.sections.length === 0 ? (
+                  <div className="text-center py-6 text-gray-400">Add sections to build your song map</div>
+                ) : (
+                  <div className="space-y-3">
+                    <div className="flex h-10 rounded-lg overflow-hidden shadow-inner border border-gray-200">
+                      {song.sections.map((section, i) => {
+                        const config = getTypeConfig(section.type);
+                        const effectiveBars = section.bars * (section.repeats || 1);
+                        const widthPercent = (effectiveBars / totalBars) * 100;
+                        const isSelected = editingSection === section.id;
+                        return (
+                          <div key={section.id}
+                            className={`cursor-pointer transition-all hover:brightness-110 ${isSelected ? 'brightness-125 ring-2 ring-inset ring-white/50' : ''}`}
+                            style={{ width: `${widthPercent}%`, backgroundColor: config.printColor, minWidth: '3px' }}
+                            onClick={() => setEditingSection(isSelected ? null : section.id)}
+                            title={`${getSectionDisplayName(section, i)} - ${effectiveBars} bars`}
+                          />
+                        );
+                      })}
+                    </div>
+                    
+                    <div className="border rounded-lg divide-y">
+                      {song.sections.map((section, i) => {
+                        const config = getTypeConfig(section.type);
+                        const effectiveBars = section.bars * (section.repeats || 1);
+                        const widthPercent = ((effectiveBars / totalBars) * 100).toFixed(0);
+                        const repeat = (section.repeats || 1) > 1 ? ` ×${section.repeats}` : '';
+                        const isSelected = editingSection === section.id;
+                        return (
+                          <div key={section.id}
+                            className={`flex items-center gap-3 px-3 py-2 cursor-pointer transition-colors ${isSelected ? 'bg-blue-50' : 'hover:bg-gray-50'}`}
+                            onClick={() => setEditingSection(isSelected ? null : section.id)}>
+                            <span className="text-xs text-gray-400 w-5">{i + 1}.</span>
+                            <div className="w-4 h-4 rounded flex-shrink-0" style={{ backgroundColor: config.printColor }} />
+                            <span className="font-medium text-gray-800 flex-1">{getSectionDisplayName(section, i)}</span>
+                            <span className="text-sm text-gray-600">{section.bars} bars{repeat}</span>
+                            <span className="text-xs text-gray-400 w-10 text-right">{widthPercent}%</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Section List */}
+              <div className="bg-white rounded-lg shadow">
+                <div className="p-3 border-b flex flex-wrap gap-2 items-center justify-between">
+                  <h2 className="font-semibold text-gray-700">Sections</h2>
+                  <div className="flex flex-wrap gap-1">
+                    {SECTION_TYPES.slice(0, 6).map(type => (
+                      <button key={type.id} onClick={() => addSection(type.id)}
+                        className={`${type.color} text-white px-2 py-1 rounded text-xs hover:opacity-90`}>
+                        + {type.label}
+                      </button>
+                    ))}
+                    <select onChange={(e) => { if (e.target.value) addSection(e.target.value); e.target.value = ''; }}
+                      className="text-xs border rounded px-1 py-1 text-gray-600" defaultValue="">
+                      <option value="">+ More...</option>
+                      {SECTION_TYPES.slice(6).map(type => (
+                        <option key={type.id} value={type.id}>{type.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {song.sections.length === 0 ? (
+                  <div className="p-8 text-center text-gray-400">Click a section type above to start building your song.</div>
+                ) : (
+                  <div className="divide-y">
+                    {song.sections.map((section, i) => {
+                      const config = getTypeConfig(section.type);
+                      const isEditing = editingSection === section.id;
+                      const repeat = (section.repeats || 1) > 1 ? ` ×${section.repeats}` : '';
+                      
+                      return (
+                        <div key={section.id} className={`p-3 ${isEditing ? 'bg-blue-50' : ''}`}>
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className={`w-3 h-3 rounded-full ${config.color}`} />
+                            <span className="font-medium">{getSectionDisplayName(section, i)}</span>
+                            <span className="text-sm text-gray-500">({section.bars} bars{repeat})</span>
+                            {section.notes && <span className="text-sm text-gray-400 italic">— {section.notes}</span>}
+                            <div className="flex-1" />
+                            <button onClick={() => moveSection(section.id, -1)} className="text-gray-400 hover:text-gray-600 p-1">↑</button>
+                            <button onClick={() => moveSection(section.id, 1)} className="text-gray-400 hover:text-gray-600 p-1">↓</button>
+                            <button onClick={() => duplicateSection(section.id)} className="text-gray-400 hover:text-gray-600 p-1">⧉</button>
+                            <button onClick={() => setEditingSection(isEditing ? null : section.id)} className="text-blue-500 hover:text-blue-700 text-sm px-2">
+                              {isEditing ? 'Done' : 'Edit'}
+                            </button>
+                            <button onClick={() => deleteSection(section.id)} className="text-red-400 hover:text-red-600 p-1">×</button>
+                          </div>
+
+                          {!isEditing && section.content && (
+                            <div className="pl-5"><ChordLyricDisplay content={section.content} /></div>
+                          )}
+
+                          {isEditing && (
+                            <div className="pl-5 space-y-3 mt-3">
+                              <div className="grid grid-cols-4 gap-3">
+                                <div>
+                                  <label className="block text-xs text-gray-500 mb-1">Type</label>
+                                  <select value={section.type} onChange={(e) => updateSection(section.id, { type: e.target.value })}
+                                    className="w-full border rounded px-2 py-1.5 text-sm">
+                                    {SECTION_TYPES.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
+                                  </select>
+                                </div>
+                                <div>
+                                  <label className="block text-xs text-gray-500 mb-1">Custom Label</label>
+                                  <input type="text" value={section.label} onChange={(e) => updateSection(section.id, { label: e.target.value })}
+                                    placeholder="Optional" className="w-full border rounded px-2 py-1.5 text-sm" />
+                                </div>
+                                <div>
+                                  <label className="block text-xs text-gray-500 mb-1">Bars</label>
+                                  <input type="number" value={section.bars} onChange={(e) => updateSection(section.id, { bars: parseInt(e.target.value) || 1 })}
+                                    min="1" className="w-full border rounded px-2 py-1.5 text-sm" />
+                                </div>
+                                <div>
+                                  <label className="block text-xs text-gray-500 mb-1">Repeats</label>
+                                  <input type="number" value={section.repeats || 1} onChange={(e) => updateSection(section.id, { repeats: parseInt(e.target.value) || 1 })}
+                                    min="1" className="w-full border rounded px-2 py-1.5 text-sm" />
+                                </div>
+                              </div>
+                              
+                              <div>
+                                <label className="block text-xs text-gray-500 mb-1">Notes (feel, dynamics)</label>
+                                <input type="text" value={section.notes} onChange={(e) => updateSection(section.id, { notes: e.target.value })}
+                                  placeholder="e.g., soft, half-time, building" className="w-full border rounded px-2 py-1.5 text-sm" />
+                              </div>
+                              
+                              <div>
+                                <label className="block text-xs text-gray-500 mb-1">
+                                  Chords & Lyrics <span className="text-gray-400">— use [G]word [Am]format</span>
+                                </label>
+                                <textarea value={section.content} onChange={(e) => updateSection(section.id, { content: e.target.value })}
+                                  placeholder="[G]Amazing [D]grace, how [Em]sweet the [C]sound" rows={4}
+                                  className="w-full border rounded px-2 py-1.5 font-mono text-sm" />
+                              </div>
+
+                              {section.content && (
+                                <div>
+                                  <label className="block text-xs text-gray-500 mb-1">Preview</label>
+                                  <div className="bg-white rounded p-3 border"><ChordLyricDisplay content={section.content} /></div>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Export Panel */}
+              {showExport && (
+                <div className="bg-white rounded-lg shadow p-4">
+                  <div className="flex flex-wrap gap-2 mb-3 border-b pb-3">
+                    <button onClick={() => setShowExport('text')} className={`px-3 py-1 rounded text-sm ${showExport === 'text' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'}`}>Text</button>
+                    <button onClick={() => setShowExport('chordpro')} className={`px-3 py-1 rounded text-sm ${showExport === 'chordpro' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'}`}>ChordPro</button>
+                    <button onClick={() => setShowExport('json')} className={`px-3 py-1 rounded text-sm ${showExport === 'json' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'}`}>JSON</button>
+                    <div className="flex-1" />
+                    <button onClick={() => {
+                      const content = showExport === 'json' ? exportToJSON() : showExport === 'chordpro' ? exportToChordPro() : exportToText();
+                      navigator.clipboard.writeText(content);
+                      notify('Copied to clipboard');
+                    }} className="px-3 py-1 bg-gray-100 rounded text-sm hover:bg-gray-200">Copy</button>
+                    <button onClick={() => {
+                      const content = showExport === 'json' ? exportToJSON() : showExport === 'chordpro' ? exportToChordPro() : exportToText();
+                      const ext = showExport === 'json' ? 'json' : showExport === 'chordpro' ? 'cho' : 'txt';
+                      downloadFile(content, `${song.title.replace(/[^a-z0-9]/gi, '_')}.${ext}`);
+                      notify('Downloaded');
+                    }} className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600">Download</button>
+                    <button onClick={() => setShowExport(null)} className="px-3 py-1 bg-gray-100 rounded text-sm hover:bg-gray-200">Close</button>
+                  </div>
+                  <pre className="bg-gray-50 p-3 rounded text-xs overflow-auto max-h-64 font-mono whitespace-pre-wrap">
+                    {showExport === 'json' ? exportToJSON() : showExport === 'chordpro' ? exportToChordPro() : exportToText()}
+                  </pre>
+                </div>
+              )}
+
+              {/* Import Modal */}
+              {showImport && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                  <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-auto">
+                    <div className="p-4 border-b flex justify-between items-center">
+                      <h3 className="font-semibold">Import Song</h3>
+                      <button onClick={() => { setShowImport(false); setImportText(''); }} className="text-gray-500 hover:text-gray-700 text-xl">×</button>
+                    </div>
+                    <div className="p-4 space-y-4">
+                      <input ref={fileInputRef} type="file" accept=".txt,.cho,.chordpro,.json" onChange={handleFileUpload}
+                        className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+                      <div className="text-center text-gray-400 text-sm">— or paste content —</div>
+                      <textarea value={importText} onChange={(e) => setImportText(e.target.value)}
+                        placeholder="Paste ChordPro or JSON content here..." rows={12}
+                        className="w-full border rounded p-3 font-mono text-sm" />
+                      <div className="flex justify-end gap-2">
+                        <button onClick={() => { setShowImport(false); setImportText(''); }} className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200">Cancel</button>
+                        <button onClick={handleImport} disabled={!importText.trim()} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50">Import</button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Saved Songs Modal */}
-            {showSaved && (
-              <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-                <div className="bg-white rounded-lg shadow-xl max-w-lg w-full max-h-[80vh] overflow-auto">
-                  <div className="p-4 border-b flex justify-between items-center">
-                    <h3 className="font-semibold">Saved Songs</h3>
-                    <button onClick={() => setShowSaved(false)} className="text-gray-500 hover:text-gray-700 text-xl">×</button>
+              {/* Help */}
+              <div className="bg-blue-50 rounded-lg p-4 text-sm text-blue-900">
+                <div className="font-semibold mb-2">Quick Reference</div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <div className="font-medium text-xs text-blue-700 mb-1">CHORDPRO FORMAT</div>
+                    <code className="block bg-white rounded p-2 text-xs font-mono">[G]Amazing [D]grace, how [Em]sweet</code>
                   </div>
-                  <div className="p-4">
-                    {savedSongs.length === 0 ? (
-                      <p className="text-gray-500 text-center py-8">No saved songs yet.</p>
-                    ) : (
-                      <div className="space-y-2">
-                        {savedSongs.map((s, i) => (
-                          <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded hover:bg-gray-100">
-                            <div>
-                              <div className="font-medium">{s.title}</div>
-                              <div className="text-xs text-gray-500">{s.sections?.length || 0} sections • Key: {s.key} • {s.tempo} BPM</div>
-                            </div>
-                            <div className="flex gap-2">
-                              <button onClick={() => loadSong(s)} className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600">Load</button>
-                              <button onClick={() => deleteSavedSong(s.title)} className="px-2 py-1 text-red-500 hover:text-red-700 text-lg">×</button>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                  <div>
+                    <div className="font-medium text-xs text-blue-700 mb-1">SHARING YOUR LIBRARY</div>
+                    <div className="text-xs">Click "Export Library" in the sidebar, then upload <code className="bg-white px-1 rounded">songs.json</code> to your GitHub repo.</div>
                   </div>
                 </div>
               </div>
-            )}
-
-            {/* Help */}
-            <div className="bg-blue-50 rounded-lg p-4 text-sm text-blue-900">
-              <div className="font-semibold mb-2">Quick Reference</div>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <div className="font-medium text-xs text-blue-700 mb-1">CHORDPRO FORMAT</div>
-                  <code className="block bg-white rounded p-2 text-xs font-mono">[G]Amazing [D]grace, how [Em]sweet</code>
-                </div>
-                <div>
-                  <div className="font-medium text-xs text-blue-700 mb-1">CHORD-ONLY SECTIONS</div>
-                  <code className="block bg-white rounded p-2 text-xs font-mono">[G] [D] [Em] [C]</code>
-                </div>
-              </div>
-              <div className="mt-3 text-xs text-blue-700">
-                <strong>Tip:</strong> Your current song auto-saves. Use "Save" to add it to your saved songs list for later.
-              </div>
-            </div>
-
-            <div className="text-center text-xs text-gray-400 pb-4">
-              Song Chart Builder • Songs are saved in your browser's local storage
             </div>
           </div>
         </div>
