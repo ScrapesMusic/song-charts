@@ -475,5 +475,167 @@
       }
     ],
     "savedAt": "2026-02-07T00:38:13.905Z"
+  },
+  {
+    "title": "Chordie Sampson",
+    "key": "G",
+    "tempo": 100,
+    "timeSignature": "3/4",
+    "sections": [
+      {
+        "id": 1770427242601,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G]If I had [D/F#]anytime I'd [Am7]while it all [G]away \n[Bm/E]Spend it all [Fmaj7]idle  [C]day after [D]day\n[G]If I had a[D/F#]nickel I'd [Am7]give it all [G]away\n[Bm/E]You could have every[A7]thing that I've [C]ever been [G]paid\n[Bm/E]     [A7]   [C]  [G]  \n",
+        "notes": ""
+      },
+      {
+        "id": 1770427438174,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G]If I had any [D/F#]hope then [Am7]maybe I'd [G]stay\n[Bm/E]Maybe I'd [Fmaj7]have something [C]greater to [D]say\n[G]If I could still [D/F#]dream like I [Am7]could yester[G]day\n[Bm/E]Wake from that [Fmaj7]dream and [C]feel just the [D]same\n[Bm/E]     [Fmaj7]      [C]  [D]",
+        "notes": ""
+      },
+      {
+        "id": 1770427696632,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]Storms they roll [D]in off the [G]ocean\nThe[C] past just gets [D]further a[Em]way\n[C]Everyone [D]seems to get [G]all that they [A7]ask for\nand [C]I just get [D]out of the [G]way",
+        "notes": ""
+      }
+    ],
+    "savedAt": "2026-02-07T01:30:22.441Z"
+  },
+  {
+    "title": "Really Believe",
+    "key": "C",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "sections": [
+      {
+        "id": 1771726040501,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]What a dream I [G]woke up screaming [Dm]things ain't bad but [F]oh they [G]seem it\n[C]late at night I [G]get uncertain [Dm]close my eyes and [F]draw the [G]curtains when I",
+        "notes": ""
+      },
+      {
+        "id": 1771726276722,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]Really believe[Am]   [G] that we [C]let it get in [Am]between [G]of what[C]ever you and [Am]me had and it\n[Dm]won't grow back un[F]til your [G]back with [C]me\n[C]Really believe[Am]   [G] that we [C]let it get in [Am]between [G]of what[C]ever you and [Am]me had and it\n[Dm]won't grow back un[F]til your [G]back with [C]me",
+        "notes": ""
+      }
+    ],
+    "savedAt": "2026-02-22T02:12:03.833Z"
+  },
+  {
+    "title": "King of the Hazardous",
+    "key": "D",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "sections": [
+      {
+        "id": 1771726993052,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[D]Answer to Your [G]Highness\n[D]Answer to your prayers[G]\n[D]Only drink the [G]finest\n[D]Populate the air[G]",
+        "notes": ""
+      },
+      {
+        "id": 1771727085404,
+        "type": "prechorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "with [A]things I used to [D]know\n[A]things I used to [D]know",
+        "notes": ""
+      },
+      {
+        "id": 1771727124690,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "I would be [D]careful if I wasn't [G]me\nI can be [D]dangerous if I'm not this [G]free\nYou could be the [D]only girl for [G]me\nHear me go [D]on and on and on about [G]me",
+        "notes": ""
+      },
+      {
+        "id": 1771727199400,
+        "type": "prechorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "and [A]things I used to [D]know\n[A]things I used to [D]know",
+        "notes": ""
+      },
+      {
+        "id": 1771727229970,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[Bm]a long time [E]ago when I was the \n[D]King of the Hazar[G]dous\nI was the [D]King of the Hazar[G]dous\ncall me the [D]Subject Master[G]less\nI was the [D]King of the Hazar[G]dous",
+        "notes": ""
+      },
+      {
+        "id": 1771727337523,
+        "type": "bridge",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "I'm taking back the [Bm]crown\nI'm taking back the [A]crown\nYou'll never hold me [G]down\nI'm taking back the [Bm]crown\nI'm taking back the [A]crown\nYou'll never hold me [C]down again",
+        "notes": ""
+      },
+      {
+        "id": 1771727470838,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[D]The band was feeling [G]good\n[D] but let's hear them to this (full bar rest)\n[D] Soon enough you'll see it's only [G]thing you\n[D]Really [G]need",
+        "notes": ""
+      },
+      {
+        "id": 1771727543618,
+        "type": "prechorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "well that and [A]things I used to [D]know\n[A]things I used to [D]know",
+        "notes": ""
+      },
+      {
+        "id": 1771727558019,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[Bm]a long time [E]ago when I was the \n[D]King of the Hazar[G]dous\nI was the [D]King of the Hazar[G]dous\ncall me the [D]Subject Master[G]less\nI was the [D]King of the Hazar[G]dous",
+        "notes": ""
+      },
+      {
+        "id": 1771727563962,
+        "type": "bridge",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "I'm taking back the [Bm]crown\nI'm taking back the [A]crown\nYou'll never hold me [G]down\nI'm taking back the [Bm]crown\nI'm taking back the [A]crown\nYou'll never hold me [C]down again",
+        "notes": ""
+      }
+    ],
+    "savedAt": "2026-02-22T02:32:51.828Z"
   }
 ]
