@@ -117,123 +117,6 @@
     "savedAt": "2026-02-01T16:39:20.484Z"
   },
   {
-    "title": "Alone on the Weekend",
-    "key": "F",
-    "tempo": 110,
-    "timeSignature": "6/8",
-    "sections": [
-      {
-        "id": 1769957428647,
-        "type": "intro",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[Bb]   [F]  [C] \n[Bb]   [F]  [C] \n[Bb/D]     [F/C]    [A7/C#]      [Dm] \n[Bb]   [Bb/C]     [F]",
-        "notes": ""
-      },
-      {
-        "id": 1769957651055,
-        "type": "verse",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "And as I [C]disap[A7]pear into [F]nowhere\nI [C]hardly [A7]feel any[F]thing\nAlone on new [C]year's and a[A7]gain on the [F]weekend\nI [C]found a new [A7]note I can [F]play",
-        "notes": ""
-      },
-      {
-        "id": 1769957762864,
-        "type": "prechorus",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[Dm/F]I sit back and [F]I [A]shut [C]my \n[Dm/F]eyes when [F]I [A]don't [C]feel\n[Dm/F]right.  ",
-        "notes": ""
-      },
-      {
-        "id": 1769958019060,
-        "type": "chorus",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nI'm left with this [Bb]feeling[F]  [A7]      [Dm] \nAlone on the [Bb]week[Bb/C]end  [F]again",
-        "notes": ""
-      },
-      {
-        "id": 1769963061253,
-        "type": "bridge",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[G][C]I'm[Bb] on my [F]way\n[G][C][Bb]Wheeling [F]again\n[G][C]But[Bb]I can't es[F]cape\n[F/E]",
-        "notes": ""
-      },
-      {
-        "id": 1769963243344,
-        "type": "prechorus",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[Dm/F]I sit back and [F]I [A]shut [C]my \n[Dm/F]eyes when [F]I [A]don't [C]feel\n[Dm/F]right.  ",
-        "notes": ""
-      },
-      {
-        "id": 1769963268654,
-        "type": "chorus",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nYou made it [Bb]easy[F]  [A7]      [Dm] \nTo be left with this [Bb]feel[Bbm]ing  [F]again",
-        "notes": ""
-      },
-      {
-        "id": 1769964175751,
-        "type": "instrumental",
-        "label": "",
-        "bars": 3,
-        "repeats": 1,
-        "content": "[Edim]     [Dm]   [C]  [Bb]   [Bb/C]     [F]",
-        "notes": ""
-      },
-      {
-        "id": 1769963315884,
-        "type": "bridge",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[G][C]I'm[Bb] on my [F]way\n[G][C]  [Bb]Wheeling [F]again\n[G][C]But[Bb]I can't es[F]cape\n[F/E]",
-        "notes": "Building  - 1/8th note triplets"
-      },
-      {
-        "id": 1769963362414,
-        "type": "solo",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[G]  [C]  [Bb]   [F]\n[G]  [C]  [Bb]   [F]\n[G]  [C]  [Bb]   [F]",
-        "notes": "Building  - 1/8th note triplets"
-      },
-      {
-        "id": 1769963407734,
-        "type": "chorus",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nYou made it [Bb]easy[F] for[A7] me      [Dm] \nTo be left with this [Eb]fee[Bb]ling [F]again",
-        "notes": ""
-      },
-      {
-        "id": 1769963502853,
-        "type": "outro",
-        "label": "",
-        "bars": 6,
-        "repeats": 1,
-        "content": "[Eb]Feeling[Bb] [F]\n[Eb]Feeling[Bb]   [D7]   [Gm]\n[Ab]   [Eb]   [Bb]",
-        "notes": ""
-      }
-    ],
-    "savedAt": "2026-02-05T21:20:09.780Z"
-  },
-  {
     "title": "Welded Art",
     "key": "E",
     "tempo": 100,
@@ -513,33 +396,6 @@
     "savedAt": "2026-02-07T01:30:22.441Z"
   },
   {
-    "title": "Really Believe",
-    "key": "C",
-    "tempo": 120,
-    "timeSignature": "4/4",
-    "sections": [
-      {
-        "id": 1771726040501,
-        "type": "verse",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[C]What a dream I [G]woke up screaming [Dm]things ain't bad but [F]oh they [G]seem it\n[C]late at night I [G]get uncertain [Dm]close my eyes and [F]draw the [G]curtains when I",
-        "notes": ""
-      },
-      {
-        "id": 1771726276722,
-        "type": "chorus",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[C]Really believe[Am]   [G] that we [C]let it get in [Am]between [G]of what[C]ever you and [Am]me had and it\n[Dm]won't grow back un[F]til your [G]back with [C]me\n[C]Really believe[Am]   [G] that we [C]let it get in [Am]between [G]of what[C]ever you and [Am]me had and it\n[Dm]won't grow back un[F]til your [G]back with [C]me",
-        "notes": ""
-      }
-    ],
-    "savedAt": "2026-02-22T02:12:03.833Z"
-  },
-  {
     "title": "King of the Hazardous",
     "key": "D",
     "tempo": 120,
@@ -637,5 +493,212 @@
       }
     ],
     "savedAt": "2026-02-22T02:32:51.828Z"
+  },
+  {
+    "title": "Really Believe",
+    "key": "C",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "sections": [
+      {
+        "id": 1771980909462,
+        "type": "intro",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]  [Am]   [G]",
+        "notes": ""
+      },
+      {
+        "id": 1771726040501,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]What a dream I [G]woke up screaming [Dm]things ain't bad but [F]oh they [G]seem it\n[C]late at night I [G]get uncertain [Dm]close my eyes and [F]draw the [G]curtains when I",
+        "notes": ""
+      },
+      {
+        "id": 1771726276722,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]Really believe[Am]   [G] that we [C]let it get in [Am]between [G]of what[C]ever you and [Am]me had and it\n[Dm]won't grow back un[F]til your [G]back with [C]me\n[C]Really believe[Am]   [G] that we [C]let it get in [Am]between [G]of what[C]ever you and [Am]me had and it\n[Dm]won't grow back un[F]til your [Em]back with [C]me",
+        "notes": ""
+      },
+      {
+        "id": 1771980869068,
+        "type": "intro",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]  [Am]   [G]\n[Dm]   [F]  [E]",
+        "notes": ""
+      },
+      {
+        "id": 1771980955899,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]What a scene I'm [G]not that person [Dm]things got bad I [F]made them [G]worse and\n[C]paid my tab and [G]left the north end [Dm]halfway home I [F]called you [G]again 'cause I",
+        "notes": ""
+      },
+      {
+        "id": 1771981028140,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]Really believe[Am]   [G] that we [C]let it get in [Am]between [G]of what[C]ever you and [Am]me had and it\n[Dm]won't grow back un[F]til your [G]back with [C]me\n[C]Really believe[Am]   [G] that we [C]let it get in [Am]between [G]of what[C]ever you and [Am]me had and it\n[Dm]won't grow back un[F]til your [Em]back with [C]me",
+        "notes": ""
+      },
+      {
+        "id": 1771981034000,
+        "type": "solo",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]During solo[F]  [Em]\n\n[Dm]Ending[Am]   [G]",
+        "notes": ""
+      },
+      {
+        "id": 1771981124120,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]Really believe[Am]   [G] that we [C]let it get in [Am]between [G]of what[C]ever you and [Am]me had and it\n[Dm]won't grow back [Am]   [G]\n[C]Really believe[Am]   [G] that we [C]let it get in [Am]between [G]of what[C]ever you and [Am]me had and it\n[Dm]won't grow back un[F]til your [Em]back with [C]me",
+        "notes": ""
+      },
+      {
+        "id": 1771981152974,
+        "type": "intro",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]  [Am]   [G]\n[Dm]   [Am]   [G]",
+        "notes": ""
+      }
+    ],
+    "savedAt": "2026-02-25T00:59:31.720Z"
+  },
+  {
+    "title": "Alone on the Weekend",
+    "key": "F",
+    "tempo": 110,
+    "timeSignature": "6/8",
+    "sections": [
+      {
+        "id": 1769957428647,
+        "type": "intro",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[Bb]   [F]  [C] \n[Bb]   [F]  [C] \n[Bb/D]     [F/C]    [A7/C#]      [Dm] \n[Bb]   [Bb/C]     [F]",
+        "notes": ""
+      },
+      {
+        "id": 1769957651055,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "And as I [C]disap[A7]pear into [F]nowhere\nI [C]hardly [A7]feel any[F]thing\nAlone on new [C]year's and a[A7]gain on the [F]weekend\nI [C]found a new [A7]note I can [F]play",
+        "notes": ""
+      },
+      {
+        "id": 1769957762864,
+        "type": "prechorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[Dm]I sit back and [F]I [A]shut [C]my \n[Dm]eyes when [F]I [A]don't [C]feel\n[Dm]right.  ",
+        "notes": ""
+      },
+      {
+        "id": 1769958019060,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nI'm left with this [Bb/D]feeling[F/C]    [A7/C#]      [Dm] \nAlone on the [Bb]week[Bb/C]end  [F]again",
+        "notes": ""
+      },
+      {
+        "id": 1769963061253,
+        "type": "bridge",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G][C]I'm[Bb] on my [F]way\n[G][C][Bb]Wheeling [F]again\n[G][C]But[Bb]I can't es[F]cape\n[F/E]",
+        "notes": ""
+      },
+      {
+        "id": 1769963243344,
+        "type": "prechorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[Dm]I sit back and [F]I [A]shut [C]my \n[Dm]eyes when [F]I [A]don't [C]feel\n[Dm]right.  ",
+        "notes": ""
+      },
+      {
+        "id": 1769963268654,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nYou made it [Bb/D]easy [F/C]    [A7/C#]      [Dm] \nTo be left with this [Bb]feel[Bbm]ing  [F]again",
+        "notes": ""
+      },
+      {
+        "id": 1769964175751,
+        "type": "instrumental",
+        "label": "",
+        "bars": 3,
+        "repeats": 1,
+        "content": "[Edim]     [Dm]   [A]  [Bb]   [Bb/C]     [F]",
+        "notes": ""
+      },
+      {
+        "id": 1769963315884,
+        "type": "bridge",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G][C]I'm[Bb] on my [F]way\n[G][C]  [Bb]Wheeling [F]again\n[G][C]But[Bb]I can't es[F]cape\n[F/E]",
+        "notes": "Building  - 1/8th note triplets"
+      },
+      {
+        "id": 1769963362414,
+        "type": "solo",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G]  [C]  [Bb]   [F]\n[G]  [C]  [Bb]   [F]\n[G]  [C]  [Bb]   [F]",
+        "notes": "Building  - 1/8th note triplets"
+      },
+      {
+        "id": 1769963407734,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nYou made it [Bb/D]easy [F/C] for[A7/C#] me      [Dm] \nTo be left with this [Eb]fee[Bb]ling [F]again",
+        "notes": ""
+      },
+      {
+        "id": 1769963502853,
+        "type": "outro",
+        "label": "",
+        "bars": 6,
+        "repeats": 1,
+        "content": "[Eb]Feeling[Bb] [F]\n[Eb/G]Feeling[Bb/F]     [D7/F#]      [Gm]\n[Ab]   [Eb]   [Bb]",
+        "notes": ""
+      }
+    ],
+    "savedAt": "2026-02-25T01:02:04.450Z"
   }
 ]
