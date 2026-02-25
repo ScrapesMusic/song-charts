@@ -360,42 +360,6 @@
     "savedAt": "2026-02-07T00:38:13.905Z"
   },
   {
-    "title": "Chordie Sampson",
-    "key": "G",
-    "tempo": 100,
-    "timeSignature": "3/4",
-    "sections": [
-      {
-        "id": 1770427242601,
-        "type": "verse",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[G]If I had [D/F#]anytime I'd [Am7]while it all [G]away \n[Bm/E]Spend it all [Fmaj7]idle  [C]day after [D]day\n[G]If I had a[D/F#]nickel I'd [Am7]give it all [G]away\n[Bm/E]You could have every[A7]thing that I've [C]ever been [G]paid\n[Bm/E]     [A7]   [C]  [G]  \n",
-        "notes": ""
-      },
-      {
-        "id": 1770427438174,
-        "type": "verse",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[G]If I had any [D/F#]hope then [Am7]maybe I'd [G]stay\n[Bm/E]Maybe I'd [Fmaj7]have something [C]greater to [D]say\n[G]If I could still [D/F#]dream like I [Am7]could yester[G]day\n[Bm/E]Wake from that [Fmaj7]dream and [C]feel just the [D]same\n[Bm/E]     [Fmaj7]      [C]  [D]",
-        "notes": ""
-      },
-      {
-        "id": 1770427696632,
-        "type": "chorus",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[C]Storms they roll [D]in off the [G]ocean\nThe[C] past just gets [D]further a[Em]way\n[C]Everyone [D]seems to get [G]all that they [A7]ask for\nand [C]I just get [D]out of the [G]way",
-        "notes": ""
-      }
-    ],
-    "savedAt": "2026-02-07T01:30:22.441Z"
-  },
-  {
     "title": "King of the Hazardous",
     "key": "D",
     "tempo": 120,
@@ -700,5 +664,59 @@
       }
     ],
     "savedAt": "2026-02-25T01:02:04.450Z"
+  },
+  {
+    "title": "Chordie Sampson",
+    "key": "G",
+    "tempo": 100,
+    "timeSignature": "3/4",
+    "sections": [
+      {
+        "id": 1770427242601,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G]If I had [D/F#]anytime I'd [Am7]while it all [G]away \n[Bm/E]Spend it all [Fmaj7]idle  [C]day after [D]day\n[G]If I had a[D/F#]nickel I'd [Am7]give it all [G]away\n[Bm/E]You could have every[A7]thing that I've [C]ever been [G]paid\n[Bm/E]     [A7]   [C]  [G]  \n",
+        "notes": ""
+      },
+      {
+        "id": 1770427696632,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]Storms they roll [D]in off the [G]ocean\nThe[C] past just gets [D]further a[Em]way\n[C]Everyone's [D]cursed to get [G]all that they [A7]ask for\nand [C]I just get [D]out of the [G]way",
+        "notes": ""
+      },
+      {
+        "id": 1770427438174,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G]If I had any [D/F#]hope then [Am7]maybe I'd [G]stay\n[Bm/E]Maybe I'd [Fmaj7]have something [C]greater to [D]say\n[G]If I could still [D/F#]dream like I [Am7]could yester[G]day\n[Bm/E]Wake from that [Fmaj7]dream and [C]feel just the [D]same\n[Bm/E]     [Fmaj7]      [C]  [D]",
+        "notes": ""
+      },
+      {
+        "id": 1771981916017,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[C]Stories from [D]old Nova [G]Scotians\nThe[C] last one's not true [D]who's to[Em]say\n[C]Everyone's [D]used to being [G]last at the [A7]table\nand [C]I've half a mind [D]to [G]complain",
+        "notes": ""
+      },
+      {
+        "id": 1771982002570,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "I'll work the [C]day [D]shift on the [G]median\n[C]Hoping I'm [D]catching your [Em]eye\nA [C]dollar or [D]two [G]nothing to [A7]you\nyet [C]car after [D]car [G]look away\n[C]Everyone's [D]cursed to get [G]all that they [A7]ask for\nand [C]I'm thankful I [D]don't every [G]day",
+        "notes": ""
+      }
+    ],
+    "savedAt": "2026-02-25T01:15:29.009Z"
   }
 ]
