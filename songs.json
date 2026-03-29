@@ -549,123 +549,6 @@
     "savedAt": "2026-02-25T00:59:31.720Z"
   },
   {
-    "title": "Alone on the Weekend",
-    "key": "F",
-    "tempo": 110,
-    "timeSignature": "6/8",
-    "sections": [
-      {
-        "id": 1769957428647,
-        "type": "intro",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[Bb]   [F]  [C] \n[Bb]   [F]  [C] \n[Bb/D]     [F/C]    [A7/C#]      [Dm] \n[Bb]   [Bb/C]     [F]",
-        "notes": ""
-      },
-      {
-        "id": 1769957651055,
-        "type": "verse",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "And as I [C]disap[A7]pear into [F]nowhere\nI [C]hardly [A7]feel any[F]thing\nAlone on new [C]year's and a[A7]gain on the [F]weekend\nI [C]found a new [A7]note I can [F]play",
-        "notes": ""
-      },
-      {
-        "id": 1769957762864,
-        "type": "prechorus",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[Dm]I sit back and [F]I [A]shut [C]my \n[Dm]eyes when [F]I [A]don't [C]feel\n[Dm]right.  ",
-        "notes": ""
-      },
-      {
-        "id": 1769958019060,
-        "type": "chorus",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nI'm left with this [Bb/D]feeling[F/C]    [A7/C#]      [Dm] \nAlone on the [Bb]week[Bb/C]end  [F]again",
-        "notes": ""
-      },
-      {
-        "id": 1769963061253,
-        "type": "bridge",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[G][C]I'm[Bb] on my [F]way\n[G][C][Bb]Wheeling [F]again\n[G][C]But[Bb]I can't es[F]cape\n[F/E]",
-        "notes": ""
-      },
-      {
-        "id": 1769963243344,
-        "type": "prechorus",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[Dm]I sit back and [F]I [A]shut [C]my \n[Dm]eyes when [F]I [A]don't [C]feel\n[Dm]right.  ",
-        "notes": ""
-      },
-      {
-        "id": 1769963268654,
-        "type": "chorus",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nYou made it [Bb/D]easy [F/C]    [A7/C#]      [Dm] \nTo be left with this [Bb]feel[Bbm]ing  [F]again",
-        "notes": ""
-      },
-      {
-        "id": 1769964175751,
-        "type": "instrumental",
-        "label": "",
-        "bars": 3,
-        "repeats": 1,
-        "content": "[Edim]     [Dm]   [A]  [Bb]   [Bb/C]     [F]",
-        "notes": ""
-      },
-      {
-        "id": 1769963315884,
-        "type": "bridge",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[G][C]I'm[Bb] on my [F]way\n[G][C]  [Bb]Wheeling [F]again\n[G][C]But[Bb]I can't es[F]cape\n[F/E]",
-        "notes": "Building  - 1/8th note triplets"
-      },
-      {
-        "id": 1769963362414,
-        "type": "solo",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "[G]  [C]  [Bb]   [F]\n[G]  [C]  [Bb]   [F]\n[G]  [C]  [Bb]   [F]",
-        "notes": "Building  - 1/8th note triplets"
-      },
-      {
-        "id": 1769963407734,
-        "type": "chorus",
-        "label": "",
-        "bars": 8,
-        "repeats": 1,
-        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nYou made it [Bb/D]easy [F/C] for[A7/C#] me      [Dm] \nTo be left with this [Eb]fee[Bb]ling [F]again",
-        "notes": ""
-      },
-      {
-        "id": 1769963502853,
-        "type": "outro",
-        "label": "",
-        "bars": 6,
-        "repeats": 1,
-        "content": "[Eb]Feeling[Bb] [F]\n[Eb/G]Feeling[Bb/F]     [D7/F#]      [Gm]\n[Ab]   [Eb]   [Bb]",
-        "notes": ""
-      }
-    ],
-    "savedAt": "2026-02-25T01:02:04.450Z"
-  },
-  {
     "title": "Chordie Sampson",
     "key": "G",
     "tempo": 100,
@@ -717,6 +600,159 @@
         "notes": ""
       }
     ],
-    "savedAt": "2026-02-25T01:15:29.009Z"
+    "savedAt": "2026-02-25T01:29:12.633Z"
+  },
+  {
+    "title": "Alone on the Weekend",
+    "key": "F",
+    "tempo": 110,
+    "timeSignature": "6/8",
+    "sections": [
+      {
+        "id": 1769957428647,
+        "type": "intro",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[Bb]   [F]  [C] \n[Bb]   [F]  [C] \n[Bb/D]     [F/C]    [A7/C#]      [Dm] \n[Bb]   [Bb/C]     [F]",
+        "notes": ""
+      },
+      {
+        "id": 1769957651055,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "And as I [C]disap[A7]pear into [F]nowhere\nI [C]hardly [A7]feel any[F]thing\nAlone on new [C]year's and a[A7]gain on the [F]weekend\nI [C]found a new [A7]note I can [F]play",
+        "notes": ""
+      },
+      {
+        "id": 1769957762864,
+        "type": "prechorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[Dm]I sit back and [F]I [A]shut [C]my \n[Dm]eyes when [F]I [A]don't [C]feel\n[Dm]right.  ",
+        "notes": ""
+      },
+      {
+        "id": 1769958019060,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "Alone on the [Bb]weekend[F]  [C] \nTryin not to [Bb]think [F]too  [C]much \nYou make it [Bb/D]easy [F/C]    [A7/C#]for me [Dm] \nTo be left with this [Bb]feeling [Bb/C]  [F]again",
+        "notes": ""
+      },
+      {
+        "id": 1769963061253,
+        "type": "bridge",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G][C]I'm[Bb] on my [F]way\n[G][C][Bb]Wheeling [F]again\n[G][C]But[Bb]I can't es[F]cape\n[F/E]",
+        "notes": ""
+      },
+      {
+        "id": 1769963243344,
+        "type": "prechorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[Dm]I sit back and [F]I [A]shut [C]my \n[Dm]eyes when [F]I [A]don't [C]feel\n[Dm]right.  ",
+        "notes": ""
+      },
+      {
+        "id": 1769963268654,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "Alone on the [Bb]weekend[F]  [C] \nTryin not to [Bb]think [F]too  [C]much \nYou make it [Bb/D]easy [F/C]    [A7/C#]for me [Dm] \nTo be left with this [Bb]feeling [Bb/C]  [F]again",
+        "notes": ""
+      },
+      {
+        "id": 1769964175751,
+        "type": "instrumental",
+        "label": "",
+        "bars": 3,
+        "repeats": 1,
+        "content": "[Edim]     [Dm]   [A]  [Bb]   [Bb/C]     [F]",
+        "notes": ""
+      },
+      {
+        "id": 1769963315884,
+        "type": "bridge",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G][C]I'm[Bb] on my [F]way\n[G][C]  [Bb]Wheeling [F]again\n[G][C]But[Bb]I can't es[F]cape\n[F/E]",
+        "notes": "Building  - 1/8th note triplets"
+      },
+      {
+        "id": 1769963362414,
+        "type": "solo",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G]  [C]  [Bb]   [F]\n[G]  [C]  [Bb]   [F]\n[G]  [C]  [Bb]   [F]",
+        "notes": "Building  - 1/8th note triplets"
+      },
+      {
+        "id": 1769963407734,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "Alone on the [Bb]weekend[F]  [C] \nOn the long side of [Bb]healing[F]  [C] \nYou made it [Bb/D]easy [F/C] for[A7/C#] me      [Dm] \nTo be left with this [Eb]fee[Bb]ling [F]again",
+        "notes": ""
+      },
+      {
+        "id": 1769963502853,
+        "type": "outro",
+        "label": "",
+        "bars": 6,
+        "repeats": 1,
+        "content": "[Eb]Feeling[Bb] [F]\n[Eb/G]Feeling[Bb/F]     [D7/F#]      [Gm]\n[Ab]   [Eb]   [Bb]",
+        "notes": ""
+      }
+    ],
+    "savedAt": "2026-03-04T00:40:15.584Z"
+  },
+  {
+    "title": "Love is Taking Forever",
+    "key": "G",
+    "tempo": 120,
+    "timeSignature": "4/4",
+    "sections": [
+      {
+        "id": 1774827361622,
+        "type": "verse",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G]You introduced me to a [G/C]work of art\n[G]I'd never seen it we were [G/C]worlds apart\n[G]You speak sometimes and it [G/C]sounds so smart\nLike how the [D/F#]weakness is the strongest [C]part\nAnd  only [D/F#]weaknesses can break your [G]heart ",
+        "notes": ""
+      },
+      {
+        "id": 1774827487106,
+        "type": "prechorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "Or [C]If you [D/F#]listen you can [G]hear things [C] grow\nOr [C]If you're a [D/F#]noticer well then you[G] already [Em]know\n(slowing down)\n[C] loves on it's [D]way",
+        "notes": ""
+      },
+      {
+        "id": 1774827591650,
+        "type": "chorus",
+        "label": "",
+        "bars": 8,
+        "repeats": 1,
+        "content": "[G]Love is [D/F#]taking [Em]forever [C]\n[G]Love is [D/F#]taking [Em]forever [C]\nIf I could [Am7]call to a lonesome [Bm7]heart\nI [Em]know there's one out there [D]waiting\n[Am7]then I might get that [Bm7]start\nAt what [C]everyone else has been [D/F#]making\n[G]Love is [D/F#]taking [Em]forever [C]\n[G]Love is [D/F#]taking [Em]forever [C]",
+        "notes": ""
+      }
+    ],
+    "savedAt": "2026-03-29T23:42:02.439Z"
   }
 ]
